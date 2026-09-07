@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stitchly</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons (for the premium icon look) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Prevent favicon 404 error -->
+    <link rel="icon" href="data:,">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BACKGROUND ELEMENTS -->
+    <div class="bg-glow"></div>
+    <div class="bg-noise"></div>
+
+    <!-- LANDING PAGE -->
+    <div class="landing-container">
+        <nav class="navbar">
+            <div class="logo">
+                <i class="ph-fill ph-images"></i> Stitchly
+            </div>
+        </nav>
+        
+        <main class="hero">
+            <h1>Create stunning panoramas, <br><span>effortlessly.</span></h1>
+            <p>Upload overlapping photos and our advanced algorithm will stitch, crop, and blend them into a perfect, seamless panorama in seconds.</p>
+            <button id="open-modal-btn" class="glow-btn hero-btn">Start Stitching <i class="ph ph-arrow-right"></i></button>
+        </main>
+    </div>
+
+    <!-- UPLOAD MODAL OVERLAY -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        
+        <!-- MODAL CONTENT -->
+        <div class="modal" id="upload-modal">
+            <button id="close-modal-btn" class="close-btn"><i class="ph ph-x"></i></button>
+            
+            <div class="modal-header">
+                <h2>Image Enhancer</h2>
+                <p>Upload, reorder, and stitch</p>
+            </div>
+
+            <div id="error-banner" class="error-banner hidden">
+                <i class="ph ph-warning-circle"></i>
+                <span id="error-message"></span>
+            </div>
+
+            <!-- UPLOAD VIEW -->
+            <div id="upload-view" class="view-section active">
+                
+                <div id="drop-zone" class="drop-zone">
+                    <input type="file" id="file-input" multiple accept=".jpg,.jpeg,.png">
+                    
+                    <div class="cards-container">
+                        <div class="card card-back"></div>
+                        <div class="card card-front">
+                            <i class="ph-fill ph-image"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="drop-text">
+                        <p class="primary-drop-text">Drag your images here</p>
+                        <p class="secondary-drop-text">or click to browse</p>
+                    </div>
+                    <p class="supports-text">Supports PNG and JPG (Max 10MB each)</p>
+                </div>
+
+                <div id="preview-area" class="preview-area hidden">
+                    <div class="preview-header">
+                        <h3>Selected Images (<span id="file-count">0</span>)</h3>
+                        <button id="clear-btn" class="text-btn">Clear All</button>
+                    </div>
+                    <p class="help-text">Drag to reorder images left-to-right</p>
+                    <div id="preview-gallery" class="preview-gallery">
+                        <!-- Preview thumbnails go here -->
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="reset-btn" class="secondary-btn"><i class="ph ph-arrow-counter-clockwise"></i> Reset</button>
+                    <button id="btn-submit" class="glow-btn" disabled>Stitch Images <i class="ph-fill ph-magic-wand"></i></button>
+                </div>
+            </div>
+
+            <!-- PROCESSING VIEW -->
+            <div id="processing-view" class="view-section hidden">
+                <div class="spinner-container">
+                    <div class="loader"></div>
+                    <h2>Stitching images...</h2>
+                    <p>Aligning, blending, and cropping.</p>
+                </div>
+            </div>
+
+            <!-- RESULT VIEW -->
+            <div id="result-view" class="view-section hidden">
+                <div class="result-header">
+                    <h2>Success!</h2>
+                    <p>Your panorama is ready.</p>
+                </div>
+                
+                <div class="result-container">
+                    <img id="result-image" src="" alt="Stitched Panorama">
+                </div>
+                
+                <div class="modal-footer split">
+                    <button id="btn-try-again" class="secondary-btn">New Panorama</button>
+                    <div class="download-group">
+                        <select id="format-select" class="dropdown">
+                            <option value="jpg">JPG</option>
+                            <option value="png">PNG</option>
+                        </select>
+                        <a id="btn-download" href="#" class="glow-btn download-btn">Download <i class="ph-bold ph-download-simple"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Include SortableJS for drag-and-drop reordering -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Python virtual environments
+.venv/
+env/
+venv/
+__pycache__/
+*.pyc
+
+# Application temporary directories
+temp_uploads/
+temp_results/
+
+# Editor/OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
